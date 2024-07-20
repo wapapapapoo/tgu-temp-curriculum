@@ -105,11 +105,17 @@
             });
           });
         };
+
+        /* ***************************************************************** */
+
         var append = function append(row, col, text) {
           $(
             "tbody > tr[key='" + row + "'] > td[key='" + col + "']"
           ).innerHTML += text;
         };
+
+        /* ***************************************************************** */
+
         var generateTable = function generateTable() {
           clear();
           fetch("tables/" + $("#class").value + ".json")
@@ -146,14 +152,18 @@
               });
             });
         };
+
+        /* ***************************************************************** */
+
         var switchClasses = function switchClasses() {
           $("#class").innerHTML = "";
+          $("#debug").innerHTML =
+            $("#academy").value + "/" + $("#major").value + ".csv";
           fetch($("#academy").value + "/" + $("#major").value + ".csv")
             .then(function (res) {
               return res.text();
             })
             .then(function (text) {
-              $("#debug").innerHTML = text;
               text
                 .replace(/\\r/g, "")
                 .split("\n")
@@ -166,6 +176,9 @@
                 });
             });
         };
+
+        /* ***************************************************************** */
+
         var switchMajors = function switchMajors() {
           fetch($("#academy").value + "/index.txt")
             .then(function (res) {
@@ -186,6 +199,9 @@
                 });
             });
         };
+
+        /* ***************************************************************** */
+
         window.onload = function () {
           $("#academy").onclick = switchMajors;
           $("#major").onclick = switchClasses;
@@ -205,6 +221,8 @@
               });
             });
         };
+
+        /* ***************************************************************** */
       })(window, document, function (str) {
         return document.querySelector(str);
       });

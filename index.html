@@ -95,6 +95,7 @@
       </tbody>
     </table>
     </pre>
+    <pre id="debug"></pre>
     <script>
       (function (w, d, $, u) {
         var clear = function clear() {
@@ -152,6 +153,7 @@
               return res.text();
             })
             .then(function (text) {
+              $("#debug").innerHTML = text;
               text
                 .replace(/\\r/g, "")
                 .split("\n")

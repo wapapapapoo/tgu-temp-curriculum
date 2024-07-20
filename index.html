@@ -155,7 +155,7 @@
             })
             .then(function (text) {
               text
-                .replace(/\\r/g, "")
+                .replace(/\r/g, "")
                 .split("\n")
                 .forEach(function (line) {
                   if (line == "") return;
@@ -174,7 +174,7 @@
             .then(function (text) {
               $("#major").innerHTML = "";
               text
-                .replace(/\\r/g, "")
+                .replace(/\r/g, "")
                 .replace(/\.csv/g, "")
                 .split("\n")
                 .forEach(function (line) {
@@ -196,7 +196,7 @@
             })
             .then(function (text) {
               $("#academy").innerHTML = "";
-              text.split("\n").forEach(function (line) {
+              text.replace(/\r/g, "").split("\n").forEach(function (line) {
                 if (line == "") return;
                 var option = document.createElement("option");
                 option.innerHTML = line;

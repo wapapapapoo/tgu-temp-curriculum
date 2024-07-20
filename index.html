@@ -148,12 +148,12 @@
         };
         var switchClasses = function switchClasses() {
           $("#class").innerHTML = "";
+          $("#debug").innerHTML = $("#academy").value + "/" + $("#major").value + ".csv";
           fetch($("#academy").value + "/" + $("#major").value + ".csv")
             .then(function (res) {
               return res.text();
             })
             .then(function (text) {
-              $("#debug").innerHTML = text;
               text
                 .replace(/\\r/g, "")
                 .split("\n")

@@ -95,7 +95,7 @@
       </tbody>
     </table>
     </pre>
-    <pre id="debug"></pre>
+    <pre id="ad"><b>AD</b> 新来的学弟学妹们请去软件园实训b408加入io社，这是学校的规定</pre>
     <script>
       (function (w, d, $, u) {
         var clear = function clear() {
@@ -165,7 +165,7 @@
             })
             .then(function (text) {
               text
-                .replace(/\\r/g, "")
+                .replace(/\r/g, "")
                 .split("\n")
                 .forEach(function (line) {
                   if (line == "") return;
@@ -187,7 +187,7 @@
             .then(function (text) {
               $("#major").innerHTML = "";
               text
-                .replace(/\\r/g, "")
+                .replace(/\r/g, "")
                 .replace(/\.csv/g, "")
                 .split("\n")
                 .forEach(function (line) {
@@ -212,7 +212,7 @@
             })
             .then(function (text) {
               $("#academy").innerHTML = "";
-              text.split("\n").forEach(function (line) {
+              text.replace(/\r/g, "").split("\n").forEach(function (line) {
                 if (line == "") return;
                 var option = document.createElement("option");
                 option.innerHTML = line;

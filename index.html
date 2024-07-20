@@ -97,34 +97,39 @@
     </pre>
     <pre id="ad"><b>AD</b> 新来的学弟学妹们请去软件园实训b408加入io社，这是学校的规定</pre>
     <script>
-      (function (w, d, $, u) {
-        var clear = function clear() {
-          Array.prototype.forEach.call($("tbody").children, function (tr) {
-            Array.prototype.forEach.call(tr.children, function (td) {
+      ((w, d, $, u) => {
+        const clear = () => {
+          Array.prototype.forEach.call($("tbody").children, (tr) => {
+            Array.prototype.forEach.call(tr.children, (td) => {
               td.innerHTML = "";
             });
           });
         };
-        var append = function append(row, col, text) {
+
+        const append = (row, col, text) => {
           $(
             "tbody > tr[key='" + row + "'] > td[key='" + col + "']"
           ).innerHTML += text;
         };
-        var generateTable = function generateTable() {
+
+        const generateTable = () => {
           clear();
           fetch("tables/" + $("#class").value + ".json")
-            .then(function (res) {
+            .then((res) => {
               return res.json();
             })
-            .then(function (list) {
-              list[0].forEach(function (item) {
-                var day = item.id.skxq;
-                var time = Math.floor(item.id.skjc / 2) + 1;
-                var week = item.zcsm;
-                var name = item.kcm;
-                var teacher = item.jsm;
-                var location = item.xqm + item.jxlm + item.jash;
-                var last = item.cxjc / 2;
+            .then((list) => {
+              list[0].forEach((item) => {
+                const day = item.id.skxq;
+                const time = Math.floor(item.id.skjc / 2) + 1;
+                const week = item.zcsm;
+
+                const name = item.kcm;
+                const teacher = item.jsm;
+                const location = item.xqm + item.jxlm + item.jash;
+
+                const last = item.cxjc / 2;
+
                 if (last == 2) {
                   append(
                     time,
@@ -146,65 +151,72 @@
               });
             });
         };
-        var switchClasses = function switchClasses() {
+
+        const switchClasses = () => {
           $("#class").innerHTML = "";
           fetch($("#academy").value + "/" + $("#major").value + ".csv")
-            .then(function (res) {
+            .then((res) => {
               return res.text();
             })
-            .then(function (text) {
+            .then((text) => {
               text
                 .replace(/\r/g, "")
                 .split("\n")
-                .forEach(function (line) {
+                .forEach((line) => {
                   if (line == "") return;
-                  var option = document.createElement("option");
+                  const option = document.createElement("option");
                   option.innerHTML = line.split(",")[3];
                   option.value = line.split(",")[3];
                   $("#class").appendChild(option);
                 });
+              generateTable();
             });
         };
-        var switchMajors = function switchMajors() {
+
+        const switchMajors = () => {
           fetch($("#academy").value + "/index.txt")
-            .then(function (res) {
+            .then((res) => {
               return res.text();
             })
-            .then(function (text) {
+            .then((text) => {
               $("#major").innerHTML = "";
               text
                 .replace(/\r/g, "")
                 .replace(/\.csv/g, "")
                 .split("\n")
-                .forEach(function (line) {
+                .forEach((line) => {
                   if (line == "") return;
-                  var option = document.createElement("option");
+                  const option = document.createElement("option");
                   option.innerHTML = line;
                   option.value = line;
                   $("#major").appendChild(option);
                 });
+              switchClasses();
             });
         };
-        window.onload = function () {
-          $("#academy").onclick = switchMajors;
-          $("#major").onclick = switchClasses;
-          $("#class").onclick = generateTable;
+
+        window.onload = () => {
+          $("#academy").onchange = switchMajors;
+          $("#major").onchange = switchClasses;
+          $("#class").onchange = generateTable;
+
           fetch("academy.txt")
-            .then(function (res) {
+            .then((res) => {
               return res.text();
             })
-            .then(function (text) {
+            .then((text) => {
               $("#academy").innerHTML = "";
-              text.replace(/\r/g, "").split("\n").forEach(function (line) {
+              text.replace(/\r/g, "").split("\n").forEach((line) => {
                 if (line == "") return;
-                var option = document.createElement("option");
+                const option = document.createElement("option");
                 option.innerHTML = line;
                 option.value = line;
                 $("#academy").appendChild(option);
               });
+              switchMajors();
             });
         };
-      })(window, document, function (str) {
+      })(window, document, (str) => {
         return document.querySelector(str);
       });
     </script>

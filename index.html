@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>丐版课程表</title>
+    <style type="text/css">
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        box-sizing: border-box;
+        text-indent: 0;
+        margin: 0;
+        padding: 0;
+      }
+      tbody {
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+      }
+      tr {
+        border-spacing: 0;
+        height: 6em;
+        min-height: 6em;
+      }
+      td {
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        padding: 8px;
+        max-width: 8em;
+        width: 8em;
+        overflow-y: scroll;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <select name="academy" id="academy"></select>
+      <select name="major" id="major"></select>
+      <select name="class" id="class"></select>
+    </form>
+    <pre>
+    <table>
+      <tbody>
+        <tr key="1">
+          <td key="1"></td>
+          <td key="2"></td>
+          <td key="3"></td>
+          <td key="4"></td>
+          <td key="5"></td>
+          <td key="6"></td>
+          <td key="7"></td>
+        </tr>
+        <tr key="2">
+          <td key="1"></td>
+          <td key="2"></td>
+          <td key="3"></td>
+          <td key="4"></td>
+          <td key="5"></td>
+          <td key="6"></td>
+          <td key="7"></td>
+        </tr>
+        <tr key="3">
+          <td key="1"></td>
+          <td key="2"></td>
+          <td key="3"></td>
+          <td key="4"></td>
+          <td key="5"></td>
+          <td key="6"></td>
+          <td key="7"></td>
+        </tr>
+        <tr key="4">
+          <td key="1"></td>
+          <td key="2"></td>
+          <td key="3"></td>
+          <td key="4"></td>
+          <td key="5"></td>
+          <td key="6"></td>
+          <td key="7"></td>
+        </tr>
+        <tr key="5">
+          <td key="1"></td>
+          <td key="2"></td>
+          <td key="3"></td>
+          <td key="4"></td>
+          <td key="5"></td>
+          <td key="6"></td>
+          <td key="7"></td>
+        </tr>
+      </tbody>
+    </table>
+    </pre>
+    <script>
+      ((w, d, $, u) => {
+        const clear = () => {
+          Array.prototype.forEach.call($("tbody").children, (tr) => {
+            Array.prototype.forEach.call(tr.children, (td) => {
+              td.innerHTML = "";
+            });
+          });
+        };
+
+        const append = (row, col, text) => {
+          $(
+            "tbody > tr[key='" + row + "'] > td[key='" + col + "']"
+          ).innerHTML += text;
+        };
+
+        const generateTable = () => {
+          clear();
+          fetch("tables/" + $("#class").value + ".json")
+            .then((res) => {
+              return res.json();
+            })
+            .then((list) => {
+              list[0].forEach((item) => {
+                const day = item.id.skxq;
+                const time = Math.floor(item.id.skjc / 2) + 1;
+                const week = item.zcsm;
+
+                const name = item.kcm;
+                const teacher = item.jsm;
+                const location = item.xqm + item.jxlm + item.jash;
+
+                const last = item.cxjc / 2;
+
+                if (last == 2) {
+                  append(
+                    time,
+                    day,
+                    [name, teacher, week, location].join("\n") + "\n\n"
+                  );
+                  append(
+                    time + 1,
+                    day,
+                    [name, teacher, week, location].join("\n") + "\n\n"
+                  );
+                } else if (last == 1) {
+                  append(
+                    time,
+                    day,
+                    [name, teacher, week, location].join("\n") + "\n\n"
+                  );
+                }
+              });
+            });
+        };
+
+        const switchClasses = () => {
+          $("#class").innerHTML = "";
+          fetch($("#academy").value + "/" + $("#major").value + ".csv")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              text
+                .replace(/\\r/g, "")
+                .split("\n")
+                .forEach((line) => {
+                  if (line == "") return;
+                  const option = document.createElement("option");
+                  option.innerHTML = line.split(",")[3];
+                  option.value = line.split(",")[3];
+                  $("#class").appendChild(option);
+                });
+            });
+        };
+
+        const switchMajors = () => {
+          fetch($("#academy").value + "/index.txt")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              $("#major").innerHTML = "";
+              text
+                .replace(/\\r/g, "")
+                .replace(/\.csv/g, "")
+                .split("\n")
+                .forEach((line) => {
+                  if (line == "") return;
+                  const option = document.createElement("option");
+                  option.innerHTML = line;
+                  option.value = line;
+                  $("#major").appendChild(option);
+                });
+            });
+        };
+
+        window.onload = () => {
+          $("#academy").onclick = switchMajors;
+          $("#major").onclick = switchClasses;
+          $("#class").onclick = generateTable;
+
+          fetch("academy.txt")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              $("#academy").innerHTML = "";
+              text.split("\n").forEach((line) => {
+                if (line == "") return;
+                const option = document.createElement("option");
+                option.innerHTML = line;
+                option.value = line;
+                $("#academy").appendChild(option);
+              });
+            });
+        };
+      })(window, document, (str) => {
+        return document.querySelector(str);
+      });
+    </script>
+  </body>
+</html>

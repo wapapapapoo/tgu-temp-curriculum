@@ -7,82 +7,157 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>丐版课程表</title>
+    <title>丐版课表</title>
+    <link href="./dist/css/tabler.min.css" rel="stylesheet" />
     <style type="text/css">
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
+      #centerAdContainer {
+        display: none;
       }
-      form {
-        margin-bottom: 20px;
+
+      #leftAdContainer > .card,
+      #rightAdContainer > .card {
+        top: 1em;
+        display: block;
+        position: sticky;
       }
-      select {
-        padding: 8px;
-        margin-right: 10px;
-      }
-      table {
-        border-spacing: 0;
-        border-collapse: collapse;
-        box-sizing: border-box;
-        text-indent: 0;
-        margin: 0;
-        padding: 0;
-        margin: 20px auto;
-        background-color: #fff;
-        border: 1px solid #ccc;
-      }
-      tbody {
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-      }
-      tr {
-        border-spacing: 0;
-        height: 6em;
-        min-height: 6em;
+      @media screen and (max-width: 768px) {
+        #leftAdContainer,
+        #rightAdContainer {
+          display: none;
+        }
+
+        #centerAdContainer {
+          display: block;
+        }
       }
       th {
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        padding: 8px;
-        max-width: 8em;
         width: 8em;
-        text-align: center;
+        min-width: 8em;
       }
       td {
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        padding: 8px;
-        max-width: 8em;
         width: 8em;
-        overflow-y: scroll;
-        white-space: pre-wrap;
+        min-width: 8em;
+        white-space: pre;
         word-break: break-all;
+        max-height: 20em;
+        overflow: auto;
+        text-overflow: clip;
       }
-      #ad {
-        background-color: #ffffcc;
-        padding: 10px;
-        text-align: center;
+      body {
+        padding: 1em;
+      }
+      td > div {
+        display: block;
+        overflow-y: auto;
+        height: 8em;
       }
     </style>
   </head>
-  <body>
-    <form>
-      <select name="academy" id="academy"></select>
-      <select name="major" id="major"></select>
-      <select name="class" id="class"></select>
-    </form>
-    <p id="ad">
-      <b>[AD]</b> 新来的学弟学妹们请去软件园实训b408加入io社，这是学校的规定。
-    </p>
-    <pre>
-      <table>
-        <tbody>
-          
-        </tbody>
-      </table>
-    </pre>
+  <body class="antialiased">
+    <div class="wrapper">
+      <div class="page-wrapper">
+        <div class="container-xl">
+          <div class="row">
+            <div class="col-md-2" id="leftAdContainer">
+              <div class="card">
+                <div
+                  class="card-img-top img-responsive"
+                  style="
+                    background-image: url(io-vertical-ad2.jpg);
+                    padding-top: 100%;
+                    padding-bottom: 100%;
+                  "
+                ></div>
+                <div class="card-body">
+                  <h3 class="card-title">加入io社喵</h3>
+                  <p>可恶，<br />今天必须带你来IO</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">IO Club 2024</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="row row-cards">
+                <div class="col-sm-12" id="centerAdContainer">
+                  <div class="card">
+                    <img
+                      src="io-horizontal-ad.jpg"
+                      style="border-radius: 4px"
+                      class="w-full"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <form>
+                        <div class="row">
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">学院</div>
+                            <select
+                              class="form-select"
+                              name="academy"
+                              id="academy"
+                            ></select>
+                          </div>
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">专业</div>
+                            <select
+                              class="form-select"
+                              name="major"
+                              id="major"
+                            ></select>
+                          </div>
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">班级</div>
+                            <select
+                              class="form-select"
+                              name="class"
+                              id="class"
+                            ></select>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="table-responsive">
+                      <table
+                        class="table card-table table-vcenter text-nowrap datatable table-striped"
+                      >
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" id="rightAdContainer">
+              <div class="card">
+                <div
+                  class="card-img-top img-responsive"
+                  style="
+                    background-image: url(io-vertical-ad.jpg);
+                    padding-top: 100%;
+                  "
+                ></div>
+                <div class="card-body">
+                  <h3 class="card-title">加入io社喵</h3>
+                  <p>游泳·绘画·音乐·摸鱼·整活</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">IO Club 2024</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       ((w, d, $, u) => {
         const clear = () => {
@@ -97,60 +172,60 @@
             <th>星期天</th>
           </tr>
           <tr key="1">
-            <td>8:20~10:00</td>
-            <td key="1"></td>
-            <td key="2"></td>
-            <td key="3"></td>
-            <td key="4"></td>
-            <td key="5"></td>
-            <td key="6"></td>
-            <td key="7"></td>
+            <td>8:20~<br/>10:00</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
           </tr>
           <tr key="2">
-            <td>10:20~12:00</td>
-            <td key="1"></td>
-            <td key="2"></td>
-            <td key="3"></td>
-            <td key="4"></td>
-            <td key="5"></td>
-            <td key="6"></td>
-            <td key="7"></td>
+            <td>10:20~<br/>12:00</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
           </tr>
           <tr key="3">
-            <td>14:00~15:40</td>
-            <td key="1"></td>
-            <td key="2"></td>
-            <td key="3"></td>
-            <td key="4"></td>
-            <td key="5"></td>
-            <td key="6"></td>
-            <td key="7"></td>
+            <td>14:00~<br/>15:40</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
           </tr>
           <tr key="4">
-            <td>16:00~17:40</td>
-            <td key="1"></td>
-            <td key="2"></td>
-            <td key="3"></td>
-            <td key="4"></td>
-            <td key="5"></td>
-            <td key="6"></td>
-            <td key="7"></td>
+            <td>16:00~<br/>17:40</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
           </tr>
           <tr key="5">
-            <td>18:30~20:10</td>
-            <td key="1"></td>
-            <td key="2"></td>
-            <td key="3"></td>
-            <td key="4"></td>
-            <td key="5"></td>
-            <td key="6"></td>
-            <td key="7"></td>
+            <td>18:30~<br/>20:10</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
           </tr>`;
         };
 
         const append = (row, col, text) => {
           $(
-            "tbody > tr[key='" + row + "'] > td[key='" + col + "']"
+            "tbody > tr[key='" + row + "'] > td[key='" + col + "'] > div"
           ).innerHTML += text;
         };
 
@@ -176,18 +251,18 @@
                   append(
                     time,
                     day,
-                    [name, teacher, week, location].join("\n") + "\n\n"
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
                   );
                   append(
                     time + 1,
                     day,
-                    [name, teacher, week, location].join("\n") + "\n\n"
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
                   );
                 } else if (last == 1) {
                   append(
                     time,
                     day,
-                    [name, teacher, week, location].join("\n") + "\n\n"
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
                   );
                 }
               });
@@ -196,8 +271,6 @@
 
         const switchClasses = () => {
           $("#class").innerHTML = "";
-          $("#debug").innerHTML =
-            $("#academy").value + "/" + $("#major").value + ".csv";
           fetch($("#academy").value + "/" + $("#major").value + ".csv")
             .then((res) => {
               return res.text();

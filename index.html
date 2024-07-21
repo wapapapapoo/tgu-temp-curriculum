@@ -77,7 +77,14 @@
     <pre>
       <table>
         <tbody>
-          <tr>
+          
+        </tbody>
+      </table>
+    </pre>
+    <script>
+      ((w, d, $, u) => {
+        const clear = () => {
+          $("tbody").innerHTML = `<tr>
             <th></th>
             <th>星期一</th>
             <th>星期二</th>
@@ -136,18 +143,7 @@
             <td key="5"></td>
             <td key="6"></td>
             <td key="7"></td>
-          </tr>
-        </tbody>
-      </table>
-    </pre>
-    <script>
-      ((w, d, $, u) => {
-        const clear = () => {
-          Array.prototype.forEach.call($("tbody").children, (tr) => {
-            Array.prototype.forEach.call(tr.children, (td) => {
-              td.innerHTML = "";
-            });
-          });
+          </tr>`;
         };
 
         const append = (row, col, text) => {

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>天工生活圈临时课表</title>
+    <link href="./dist/css/tabler.min.css" rel="stylesheet" />
+    <style type="text/css">
+      .center-ad-container {
+        display: none;
+      }
+
+      #leftAdContainer > .card,
+      #rightAdContainer > .card {
+        top: 1em;
+        display: block;
+        position: sticky;
+      }
+      @media screen and (max-width: 768px) {
+        #leftAdContainer,
+        #rightAdContainer {
+          display: none;
+        }
+
+        .center-ad-container {
+          display: block;
+        }
+      }
+      th {
+        width: 8em;
+        min-width: 8em;
+      }
+      td {
+        width: 8em;
+        min-width: 8em;
+        white-space: pre;
+        word-break: break-all;
+        max-height: 20em;
+        overflow: auto;
+        text-overflow: clip;
+      }
+      body {
+        padding: 1em;
+      }
+      td > div {
+        display: block;
+        overflow-y: auto;
+        height: 8em;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <div class="wrapper">
+      <div class="page-wrapper">
+        <div class="container-xl">
+          <div class="row">
+            <div class="col-md-2" id="leftAdContainer">
+              <div class="card">
+                <div
+                  class="card-img-top img-responsive"
+                  style="
+                    background-image: url(vertical-ad-3.jpg);
+                    padding-top: 100%;
+                    padding-bottom: 100%;
+                  "
+                ></div>
+                <div class="card-body">
+                  <h3 class="card-title">天工生活圈</h3>
+                  <p></p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">AD from 人从众网络</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="row row-cards">
+                <div class="col-sm-12 center-ad-container">
+                  <div class="card">
+                    <img src="horizontal-ad.jpg" class="w-full" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <form>
+                        <div class="row">
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">学院</div>
+                            <select
+                              class="form-select"
+                              name="academy"
+                              id="academy"
+                            ></select>
+                          </div>
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">专业</div>
+                            <select
+                              class="form-select"
+                              name="major"
+                              id="major"
+                            ></select>
+                          </div>
+                          <div class="col-mb-4 mb-3">
+                            <div class="form-label">班级</div>
+                            <select
+                              class="form-select"
+                              name="class"
+                              id="class"
+                            ></select>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <img src="horizontal-ad-2.jpg" class="w-full" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="table-responsive">
+                      <table
+                        class="table card-table table-vcenter text-nowrap datatable table-striped"
+                      >
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2" id="rightAdContainer">
+              <div class="card">
+                <div
+                  class="card-img-top img-responsive"
+                  style="
+                    background-image: url(vertical-ad-3.jpg);
+                    padding-top: 100%;
+                    padding-bottom: 100%;
+                  "
+                ></div>
+                <div class="card-body">
+                  <h3 class="card-title">天工生活圈</h3>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">AD from 人从众网络</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "ca6272c3069648f8affc178409f45c72"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <script>
+      ((w, d, $, u) => {
+        const clear = () => {
+          $("tbody").innerHTML = `<tr>
+            <th></th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期天</th>
+          </tr>
+          <tr key="1">
+            <td>8:20~<br/>10:00</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
+          </tr>
+          <tr key="2">
+            <td>10:20~<br/>12:00</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
+          </tr>
+          <tr key="3">
+            <td>14:00~<br/>15:40</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
+          </tr>
+          <tr key="4">
+            <td>16:00~<br/>17:40</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
+          </tr>
+          <tr key="5">
+            <td>18:30~<br/>20:10</td>
+            <td key="1"><div></div></td>
+            <td key="2"><div></div></td>
+            <td key="3"><div></div></td>
+            <td key="4"><div></div></td>
+            <td key="5"><div></div></td>
+            <td key="6"><div></div></td>
+            <td key="7"><div></div></td>
+          </tr>`;
+        };
+
+        const append = (row, col, text) => {
+          $(
+            "tbody > tr[key='" + row + "'] > td[key='" + col + "'] > div"
+          ).innerHTML += text;
+        };
+
+        const generateTable = () => {
+          clear();
+          fetch("tables/" + $("#class").value + ".json")
+            .then((res) => {
+              return res.json();
+            })
+            .then((list) => {
+              list[0].forEach((item) => {
+                const day = item.id.skxq;
+                const time = Math.floor(item.id.skjc / 2) + 1;
+                const week = item.zcsm;
+
+                const name = item.kcm;
+                const teacher = item.jsm;
+                const location = item.xqm + item.jxlm + item.jash;
+
+                const last = item.cxjc / 2;
+
+                if (last == 2) {
+                  append(
+                    time,
+                    day,
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
+                  );
+                  append(
+                    time + 1,
+                    day,
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
+                  );
+                } else if (last == 1) {
+                  append(
+                    time,
+                    day,
+                    `<b>${name}</b>\n${teacher}\n${week}\n${location}\n\n`
+                  );
+                }
+              });
+            });
+        };
+
+        const switchClasses = () => {
+          $("#class").innerHTML = "";
+          fetch($("#academy").value + "/" + $("#major").value + ".csv")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              text
+                .replace(/\r/g, "")
+                .split("\n")
+                .forEach((line) => {
+                  if (line == "") return;
+                  const option = document.createElement("option");
+                  option.innerHTML = line.split(",")[3];
+                  option.value = line.split(",")[3];
+                  $("#class").appendChild(option);
+                });
+              generateTable();
+            });
+        };
+
+        const switchMajors = () => {
+          fetch($("#academy").value + "/index.txt")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              $("#major").innerHTML = "";
+              text
+                .replace(/\r/g, "")
+                .replace(/\.csv/g, "")
+                .split("\n")
+                .forEach((line) => {
+                  if (line == "") return;
+                  const option = document.createElement("option");
+                  option.innerHTML = line;
+                  option.value = line;
+                  $("#major").appendChild(option);
+                });
+              switchClasses();
+            });
+        };
+
+        window.onload = () => {
+          $("#academy").onchange = switchMajors;
+          $("#major").onchange = switchClasses;
+          $("#class").onchange = generateTable;
+
+          fetch("academy.txt")
+            .then((res) => {
+              return res.text();
+            })
+            .then((text) => {
+              $("#academy").innerHTML = "";
+              text
+                .replace(/\r/g, "")
+                .split("\n")
+                .forEach((line) => {
+                  if (line == "") return;
+                  const option = document.createElement("option");
+                  option.innerHTML = line;
+                  option.value = line;
+                  $("#academy").appendChild(option);
+                });
+              switchMajors();
+            });
+        };
+      })(window, document, (str) => {
+        return document.querySelector(str);
+      });
+    </script>
+  </body>
+</html>
